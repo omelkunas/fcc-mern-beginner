@@ -9,7 +9,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useProdactStore } from "../store/product";
+import { useProductStore } from "../store/product";
 
 export default function CreatePage() {
   const [newProduct, setNewProduct] = useState({
@@ -20,7 +20,7 @@ export default function CreatePage() {
 
   const toast = useToast();
 
-  const { createProduct } = useProdactStore();
+  const { createProduct } = useProductStore();
 
   const handleAddProduct = async () => {
     const { success, message } = await createProduct(newProduct);

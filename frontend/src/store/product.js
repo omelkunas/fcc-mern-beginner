@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useProdactStore = create((set) => ({
+export const useProductStore = create((set) => ({
   products: [],
   setProducts: (products) => set({ products }),
   createProduct: async (newProduct) => {
@@ -18,5 +18,10 @@ export const useProdactStore = create((set) => ({
     const data = await res.json();
     set((state) => ({ products: [...state.products, data.data] }));
     return { success: true, message: "Product was added" };
+  },
+  fetchProducts: async () => {
+    const res = await fetch("/api/products");
+    const data = await res.json();
+    set({ products: data.data });
   },
 }));
